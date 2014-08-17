@@ -165,17 +165,6 @@ abline(v = median_t_steps2, col = 'red', lwd = 2)
 legend("topright",c("Mean", "Median"), lwd = c(2,2), col = c("blue", "red"))
 ```
 
-Finally, the next table summarizes the differences between raw data and imputed data
-```{r table1}
-library(knitr)
-kable(c("hola", "hola2"),format = "markdown")
-```
-col1 <- c(c1 = 
-|   | Mean | Median | Min | Max |
-|---|:-:|:-:|:-:|:-:|
-| With Missing values  | `r mean_t_steps`  | `r median_t_steps` | `r min_t_steps`  | `r max_t_steps`  |
-| With Imputed values  | `r mean_t_steps2`  | `r median_t_steps2`  | `r min_t_steps2` | `r max_t_steps2` |
-
 
 #### 4.- Are there differences in activity patterns between weekdays and weekends?
 Normally, the walking activity differs from weekdays to weekends, that is because during weekends the activity pattern changes because there is not need to walk to work. Prior analyzing the differences between weekends and weekdays, we need to add a column to identify whether the date is a weekend (Saturday & Sundays) or a weekday (Monday - Friday):
