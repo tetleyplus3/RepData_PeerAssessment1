@@ -165,6 +165,31 @@ abline(v = median_t_steps2, col = 'red', lwd = 2)
 legend("topright",c("Mean", "Median"), lwd = c(2,2), col = c("blue", "red"))
 ```
 
+Finally, the following code, creates a table in which statistics from both the original database (data with missing values) and the database with missing values imputed, so a comparison is much straightforward:
+
+```{r table1, results='asis'}
+library(knitr)    ## this library will handle the table
+
+## Let's create first the columns of data
+means   <- c(mean_t_steps  , mean_t_steps2)
+medians <- c(median_t_steps, median_t_steps2)
+mins    <- c(min_t_steps   , min_t_steps2)
+maxs    <- c(max_t_steps   , max_t_steps2)
+
+## With the columns, no we create the data frame
+mytable <- data.frame(means, medians, mins, maxs)
+
+## And rename the columns and rows, which will be uses in the table
+names(mytable)     <- c("Mean", "Median", "Min", "Max")
+row.names(mytable) <- c("With missing values", "Without missing values")
+
+## Finally, we create the table
+kable(mytable, "markdown")    ## In this case, markdown looked better than html
+
+```
+
+As shown in the table, imputting data has a real effect on the data, since the differences between the statistics based on data with missing values and the statistics based on imputed missing values, are considerable. In this case, I have to mention that the algorithm to replace `NAs` it's not that sophisticated, but still, there would be a visible effect on the results. So just keep in mind this when imputting missing data.
+
 
 #### 4.- Are there differences in activity patterns between weekdays and weekends?
 Normally, the walking activity differs from weekdays to weekends, that is because during weekends the activity pattern changes because there is not need to walk to work. Prior analyzing the differences between weekends and weekdays, we need to add a column to identify whether the date is a weekend (Saturday & Sundays) or a weekday (Monday - Friday):
